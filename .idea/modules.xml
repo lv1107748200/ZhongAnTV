@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/ZhongAnTV.iml" filepath="$PROJECT_DIR$/ZhongAnTV.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/indicatorseekbar/indicatorseekbar.iml" filepath="$PROJECT_DIR$/indicatorseekbar/indicatorseekbar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tvRecycleview/tvRecycleview.iml" filepath="$PROJECT_DIR$/tvRecycleview/tvRecycleview.iml" />
+    </modules>
+  </component>
+</project>

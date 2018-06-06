@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="false"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:focusable="false"
+        android:background="@drawable/loop_color_three"
+        >
+
+        <TextView
+            android:layout_marginTop="@dimen/x30"
+            android:layout_marginBottom="@dimen/x30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确定退出吗？"
+            android:focusable="false"
+            android:textColor="@color/white"
+            />
+
+
+
+        <LinearLayout
+            android:focusable="false"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x40"
+            android:orientation="horizontal"
+            >
+
+            <LinearLayout
+                android:id="@+id/layoutQD"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:focusable="true"
+                android:background="@drawable/foc_btn_two"
+                >
+                <TextView
+                    android:duplicateParentState="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="确定"
+                    android:textColor="@color/white"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutQX"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:focusable="true"
+                android:background="@drawable/foc_btn_three"
+                >
+                <TextView
+                    android:duplicateParentState="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="取消"
+                    android:textColor="@color/white"
+                    />
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

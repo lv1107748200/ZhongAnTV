@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ZhongAnTV</string>
+
+    <item name="tag_view_hold" type="id" />
+
+    <string name="video">直播</string>
+    <string name="look_back">回看</string>
+    <string name="user_center">用户中心</string>
+    <string name="out">退出</string>
+</resources>

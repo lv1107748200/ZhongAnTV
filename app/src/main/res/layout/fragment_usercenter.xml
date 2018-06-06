@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="false"
+    >
+
+    <TextView
+        android:text="@string/user_center"
+        style="@style/tv_title" />
+
+    <com.hr.zhongantv.widget.layout.LoadingLayout
+        android:id="@+id/loadingLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.hr.zhongantv.widget.layout.LoadingLayout>
+
+</FrameLayout>

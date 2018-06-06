@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+    <TextView
+        android:text="@string/out"
+        style="@style/tv_title" />
+
+    <Button
+        android:id="@+id/out_btn"
+        android:layout_width="@dimen/x380"
+        android:layout_height="wrap_content"
+        android:background="@drawable/foc_btn_one"
+        android:textColor="@drawable/foc_tv_color_one"
+        android:text="退出"
+        android:textSize="@dimen/sp_24"
+        android:layout_gravity="center"
+        />
+
+</FrameLayout>

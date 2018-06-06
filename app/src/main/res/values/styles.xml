@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@drawable/gradient_bc</item>
+    </style>
+
+    <style name="popup_hint_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_enter_anim</item>
+        <item name="android:windowExitAnimation">@anim/pop_exit_anim</item>
+    </style>
+    <style name="popup_hint_anim_one" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_enter_anim_one</item>
+        <item name="android:windowExitAnimation">@anim/pop_exit_anim_one</item>
+    </style>
+    <style name="popup_hint_anim_two" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/pop_enter_anim_two</item>
+        <item name="android:windowExitAnimation">@anim/pop_exit_anim_two</item>
+    </style>
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@drawable/gradient_bc</item>
+    </style>
+
+    <style name="InitProgressBar" parent="@android:style/Widget.ProgressBar.Large">
+        <!-- 最大高度50dp，最小高度10dp，进度值确定，Drawable样式文件引用 -->
+        <item name="android:indeterminate">false</item>
+        <item name="android:indeterminateDrawable">@drawable/init_progressbar</item>
+        <item name="android:indeterminateDuration">1000</item>
+    </style>
+
+    <style name="TwoWayViewBase">
+
+    </style>
+
+    <style name="TwoWayView" parent="TwoWayViewBase">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:layout_marginTop">@dimen/x36</item>
+        <item name="android:paddingLeft">@dimen/x60</item>
+        <item name="android:paddingRight">@dimen/x60</item>
+        <item name="android:paddingBottom">@dimen/x60</item>
+    </style>
+
+    <style name="TwomuewView" parent="TwoWayViewBase">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:background">@drawable/back_menu</item>
+        <item name="android:paddingTop">@dimen/x230</item>
+        <item name="android:paddingLeft">@dimen/x40</item>
+        <item name="android:paddingRight">@dimen/x71</item>
+        <item name="android:paddingBottom">@dimen/x40</item>
+    </style>
+
+    <style name="TwomuewVideoView" parent="TwoWayViewBase">
+        <item name="android:orientation">horizontal</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:background">@color/c_990</item>
+    </style>
+
+    <style name="tv">
+        <item name="android:focusable">false</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">@dimen/sp_22</item>
+    </style>
+
+    <style name="tv_title" parent="tv">
+        <item name="android:textColor">@color/c_566</item>
+        <item name="android:textSize">@dimen/sp_24</item>
+        <item name="android:layout_marginLeft">@dimen/x60</item>
+        <item name="android:layout_marginTop">@dimen/x56</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="tv_title_video" parent="tv">
+        <item name="android:layout_marginLeft">@dimen/x60</item>
+        <item name="android:layout_marginTop">@dimen/x56</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+</resources>
