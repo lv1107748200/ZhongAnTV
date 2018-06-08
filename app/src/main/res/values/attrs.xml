@@ -9,4 +9,14 @@
         <attr name="bottomRightRadius" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="YViewPager">
+        <attr name="orientation">
+            <enum name="vertical" value="0"/>
+            <enum name="horizontal" value="1"/>
+        </attr>
+        <attr name="circulatory" format="boolean"/>
+        <attr name="circulationCount" format="integer"/>
+
+    </declare-styleable>
+
 </resources>

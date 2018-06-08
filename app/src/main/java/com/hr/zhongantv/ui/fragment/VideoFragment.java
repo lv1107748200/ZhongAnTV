@@ -46,7 +46,7 @@ public class VideoFragment extends BaseFragment
 {
     private String url = null;
 
-    //private String url = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
+   // private String url = "rtmp://live.hkstv.hk.lxdns.com/live/hks";
     //private String url = "http://42.159.206.249:5080/1001/21348634.m3u8";
     //private String url = "http://live.chinaanxuan.com/AppName/StreamName.flv";
 
@@ -75,48 +75,57 @@ public class VideoFragment extends BaseFragment
         controlIjkPlayer.setLoadingLayout(loadingLayout);
         controlIjkPlayer.setConPlayer(this);
 
-        load();
+
 
 //      url = "rtmp://live.zacm.org/AppName/StreamName?auth_key=1528289632-0-0-2af3a1b8a084a7d2152c978199abb87a";
- //     controlIjkPlayer.setLiveUrl(url);
-  //    controlIjkPlayer.init();
+   //   controlIjkPlayer.setLiveUrl(url);
+    //  controlIjkPlayer.init();
+
     }
 
     @Override
     public void loadData() {
         super.loadData();
-        NLog.d(NLog.TAGOther,"VideoFragment:loadData--->");
-
-        lifecycleSubject.onNext(FragmentEvent.START);
-
-            if(!CheckUtil.isEmpty(url)){
-                controlIjkPlayer.playerOrPause(false);
-            } else {
-
-            if(View.GONE == loadingLayout.getVisibility()){
-                loadingLayout.setVisibility(View.VISIBLE);
-            }
-
-            loadingLayout.setLoadingLayout(LoadingLayout.ONE,null);
-            load();
-
-        }
-
+       // NLog.d(NLog.TAGOther,"VideoFragment:loadData--->");
+       // load();
     }
 
     @Override
     public void stopLoad() {
         super.stopLoad();
-        NLog.d(NLog.TAGOther,"VideoFragment:stopLoad--->");
-
-        if(!CheckUtil.isEmpty(url)){
-            controlIjkPlayer.playerOrPause(true);
-        }else {
-            dispose();
-            lifecycleSubject.onNext(FragmentEvent.PAUSE);
-        }
-
     }
+
+    @Override
+    public void isHint(boolean isVisibleToUser) {
+
+        NLog.d(NLog.TAGOther,"VideoFragment:isHint--->" + isVisibleToUser);
+        if(isVisibleToUser){//可见
+
+            lifecycleSubject.onNext(FragmentEvent.START);
+
+            if(!CheckUtil.isEmpty(url)){
+               // FocusUtil.setFocus(controlIjkPlayer);
+                controlIjkPlayer.playerOrPause(false);
+            } else {
+               // FocusUtil.setFocus(loadingLayout);
+                if(View.GONE == loadingLayout.getVisibility()){
+                    loadingLayout.setVisibility(View.VISIBLE);
+                }
+
+                loadingLayout.setLoadingLayout(LoadingLayout.ONE,null);
+                load();
+
+            }
+        }else {//不可见
+            if(!CheckUtil.isEmpty(url)){
+                controlIjkPlayer.playerOrPause(true);
+            }else {
+                dispose();
+                lifecycleSubject.onNext(FragmentEvent.PAUSE);
+            }
+        }
+    }
+
     //重新加载
     @Override
     public void btnCallBack() {

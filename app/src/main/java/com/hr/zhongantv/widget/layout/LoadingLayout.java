@@ -177,7 +177,7 @@ public  class LoadingLayout extends LinearLayout {
                 }
                 break;
             case TWO:
-                FocusUtil.setFocus(getBtnLoad());
+               // FocusUtil.setFocus(getBtnLoad());
                 if(null != showMain){
                     setBtnLoad(showMain.getBtnText(),showMain.getText());
                 }else {

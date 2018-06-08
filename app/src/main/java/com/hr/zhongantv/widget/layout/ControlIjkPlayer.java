@@ -281,7 +281,11 @@ public class ControlIjkPlayer extends FrameLayout implements
             if(is){
                 IjkPlayerMger.getInstance().getMediaPlayer().stop();
             }else {
-                exchangeCollect();
+//                if(null == cusTomSurfaceView){
+//                    cusTomSurfaceView =  CusTomSurfaceView.addSurfaceView(getContext(),this,0,this,this);
+//                }
+//                exchangeCollect();
+                init();
             }
 
 //            if(IjkPlayerMger.mediaPlayer.isPlaying()){

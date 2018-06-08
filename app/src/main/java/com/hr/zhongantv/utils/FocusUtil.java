@@ -13,9 +13,19 @@ public class FocusUtil {
             return;
         }
 
-        view. setFocusable(true);
-        view.setFocusableInTouchMode(true);
+//        view. setFocusable(true);
+//        view.setFocusableInTouchMode(true);
         view.requestFocus();
     }
+    public static void clearFocus(View view){
+        if(null == view){
+            return;
+        }
+
+//        view. setFocusable(true);
+//        view.setFocusableInTouchMode(true);
+        view.clearFocus();
+    }
+
 
 }

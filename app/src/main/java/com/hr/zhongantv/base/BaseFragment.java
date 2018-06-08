@@ -90,7 +90,7 @@ public class BaseFragment extends AbstractBaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         isViewCreated = true;
-       // lazyLoad();
+        lazyLoad();
     }
 
     public int getLayout(){
@@ -106,40 +106,43 @@ public class BaseFragment extends AbstractBaseFragment {
     public void stopLoad(){
 
     }
-//    @Override
-//    public void setUserVisibleHint(boolean isVisibleToUser) {
-//        super.setUserVisibleHint(isVisibleToUser);
-//        NLog.e(NLog.TAGOther,"setUserVisibleHint--->");
-//
-//        lazyLoad();
-//    }
-
     @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-      //  NLog.e(NLog.TAGOther,"onHiddenChanged--->" + hidden);
-        if (hidden) {
-
-            //隐藏时所作的事情
-            stopLoad();
-
-        } else {
-            //显示时所作的事情
-
-            loadData();
-        }
-
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+      //  NLog.e(NLog.TAGOther,"setUserVisibleHint--->");
+        lazyLoad();
     }
+
+    public void isHint(boolean isVisibleToUser){}
+
+//    @Override
+//    public void onHiddenChanged(boolean hidden) {
+//        super.onHiddenChanged(hidden);
+//      //  NLog.e(NLog.TAGOther,"onHiddenChanged--->" + hidden);
+//        if (hidden) {
+//
+//            //隐藏时所作的事情
+//            stopLoad();
+//
+//        } else {
+//            //显示时所作的事情
+//
+//            loadData();
+//        }
+//
+//    }
 
     private void lazyLoad() {
         if(!isViewCreated)
             return;
         if (getUserVisibleHint()) {
+            isHint(true);
             if(!isLoad){
                 loadData();
                 isLoad = true;
             }
         } else {
+            isHint(false);
             if (isLoad) {
                 stopLoad();
             }

@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.hr.zhongantv.utils.CheckUtil;
+import com.hr.zhongantv.widget.view.vhpager.YFragmentPagerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
  * Created by 吕 on 2017/12/11.
  */
 
-public class MainAdapter extends FragmentPagerAdapter {
+public class MainAdapter extends YFragmentPagerAdapter {
 
     private List<Fragment> fragmentList;
 

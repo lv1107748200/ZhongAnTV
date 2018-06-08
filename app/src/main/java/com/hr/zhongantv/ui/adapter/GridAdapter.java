@@ -23,6 +23,7 @@ import com.hr.zhongantv.entiy.ItemBean;
 import com.hr.zhongantv.net.entry.LookBackData;
 import com.hr.zhongantv.ui.adapter.base.CommonRecyclerViewAdapter;
 import com.hr.zhongantv.ui.adapter.base.CommonRecyclerViewHolder;
+import com.hr.zhongantv.utils.CheckUtil;
 
 
 public class GridAdapter extends CommonRecyclerViewAdapter<LookBackData> {
@@ -39,6 +40,14 @@ public class GridAdapter extends CommonRecyclerViewAdapter<LookBackData> {
     public void onBindItemHolder(CommonRecyclerViewHolder helper, LookBackData item, int position) {
         helper.getHolder()
                 .setText(R.id.title, item.getName())
-        .showImage(R.id.image,item.getFirstPicture());
+        .showImage(R.id.image,getUrl(item.getFirstPicture()));
+    }
+
+    private String getUrl(String url){
+
+        if(!CheckUtil.isEmpty(url))
+        url = url.replaceAll("\\\\","/");
+
+        return url;
     }
 }

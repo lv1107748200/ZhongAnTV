@@ -1,52 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
-          <FrameLayout
-              android:layout_weight="1"
-              android:id="@+id/framelayout"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-          </FrameLayout>
+    android:layout_height="match_parent">
 
+    <com.hr.zhongantv.widget.view.TvVHViewPager
+        android:id="@+id/TvViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="false"
+        app:orientation="vertical"
+        >
+    </com.hr.zhongantv.widget.view.TvVHViewPager>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="horizontal"-->
-        <!--&gt;-->
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/menu"
+        android:visibility="invisible"
+        layout="@layout/pop_menu"/>
 
-        <!--<Button-->
-            <!--android:id="@+id/btn_one"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:onClick="onClick"-->
-            <!--android:text="one"-->
-            <!--/>-->
-        <!--<Button-->
-            <!--android:id="@+id/btn_two"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:onClick="onClick"-->
-            <!--android:text="two"-->
-            <!--/>-->
-        <!--<Button-->
-            <!--android:id="@+id/btn_three"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:onClick="onClick"-->
-            <!--android:text="three"-->
-            <!--/>-->
-        <!--<Button-->
-            <!--android:id="@+id/btn_four"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:onClick="onClick"-->
-            <!--android:text="four"-->
-            <!--/>-->
-    <!--</LinearLayout>-->
-
-
-</LinearLayout>
+</RelativeLayout>

@@ -21,9 +21,9 @@ public class HttpModule {
     protected static final String APP_CODE = "AppCode";
     protected static final String APP_CODE_VALUE = "ANDROID";
 
-    //private final static String URl = "http://192.168.0.113:8081/";
+    private final static String URl = "http://192.168.0.113:8081/";
    // private final static String URl = "http://39.104.65.70:8090/";
-    private final static String URl = "http://123.56.21.11:7089/";
+   // private final static String URl = "http://123.56.21.11:7089/";
 
     @Provides
     @Singleton

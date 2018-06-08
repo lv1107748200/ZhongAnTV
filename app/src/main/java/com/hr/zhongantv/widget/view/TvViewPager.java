@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.widget.Scroller;
@@ -24,7 +25,19 @@ public class TvViewPager extends ViewPager {
         super(context, attrs);
         initScroller(context);
     }
-    
+
+    @Override
+    public boolean dispatchKeyEvent(KeyEvent event) {
+
+
+        switch (event.getKeyCode()){
+            case KeyEvent.KEYCODE_DPAD_LEFT:
+            case KeyEvent.KEYCODE_DPAD_RIGHT://向左键
+                return false;
+        }
+
+        return super.dispatchKeyEvent(event);
+    }
     @Override
     public boolean isInEditMode() {
         return true;

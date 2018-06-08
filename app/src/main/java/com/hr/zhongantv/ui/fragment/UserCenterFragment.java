@@ -54,6 +54,18 @@ public class UserCenterFragment extends BaseFragment implements LoadingLayout.Lo
             load();
       //  }
     }
+
+    @Override
+    public void isHint(boolean isVisibleToUser) {
+        if(isVisibleToUser){
+            if(isLoad){
+             //   FocusUtil.setFocus(loadingLayout);
+            }else {
+              //  FocusUtil.setFocus(loadingLayout);
+            }
+        }
+    }
+
     //重新加载
     @Override
     public void btnCallBack() {

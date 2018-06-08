@@ -13,6 +13,7 @@ import com.hr.zhongantv.net.http.HttpException;
 import com.hr.zhongantv.ui.activity.LookBackIjkActivity;
 import com.hr.zhongantv.ui.adapter.GridAdapter;
 import com.hr.zhongantv.ui.adapter.base.CommonRecyclerViewAdapter;
+import com.hr.zhongantv.ui.event.Event;
 import com.hr.zhongantv.utils.CheckUtil;
 import com.hr.zhongantv.utils.DisplayUtils;
 import com.hr.zhongantv.utils.FocusUtil;
@@ -23,6 +24,10 @@ import com.hr.zhongantv.widget.layout.LoadingLayout;
 import com.owen.tvrecyclerview.widget.SimpleOnItemListener;
 import com.owen.tvrecyclerview.widget.TvRecyclerView;
 import com.trello.rxlifecycle2.android.FragmentEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +59,9 @@ public class LookBackFragment extends BaseFragment implements LoadingLayout.Load
     @Override
     public void init() {
         super.init();
+        if(!EventBus.getDefault().isRegistered(this)) {
+            EventBus.getDefault().register(this);
+        }
         //loadingLayout.setLoad_layout(R.drawable.video_back);
         loadingLayout.setLoadingCallBack(this);
 
@@ -84,6 +92,9 @@ public class LookBackFragment extends BaseFragment implements LoadingLayout.Load
         mRecyclerView.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
+
+                NLog.d(NLog.TAGOther,"LookBackFragment hasFocus--->" + hasFocus);
+
                 mFocusBorder.setVisible(hasFocus);
             }
         });
@@ -106,27 +117,34 @@ public class LookBackFragment extends BaseFragment implements LoadingLayout.Load
     public void loadData() {
         super.loadData();
 
-        NLog.d(NLog.TAGOther,"LookBackFragment:loadData--->");
-        if(CheckUtil.isEmpty(mAdapter.getmDatas())){
-            if(View.GONE == loadingLayout.getVisibility()){
-                loadingLayout.setVisibility(View.VISIBLE);
-            }
-            loadingLayout.setLoadingLayout(LoadingLayout.ONE,null);
-            load();
-        }else {
-            loadingLayout.setVisibility(View.VISIBLE);
-            loadingLayout.setLoadingLayout(LoadingLayout.ONE,null);
-            isLoadMore = false;
-            isMore = true;
-            pageNo = 1;
-            load();
-        }
+       // NLog.d(NLog.TAGOther,"LookBackFragment:loadData--->");
     }
 
     @Override
     public void stopLoad() {
         super.stopLoad();
-        mFocusBorder.setVisible(false);
+    }
+
+    @Override
+    public void isHint(boolean isVisibleToUser) {
+        if(isVisibleToUser){//可见
+            if(CheckUtil.isEmpty(mAdapter.getmDatas())){
+                if(View.GONE == loadingLayout.getVisibility()){
+                    loadingLayout.setVisibility(View.VISIBLE);
+                }
+                loadingLayout.setLoadingLayout(LoadingLayout.ONE,null);
+                load();
+            }else {
+                loadingLayout.setVisibility(View.VISIBLE);
+                loadingLayout.setLoadingLayout(LoadingLayout.ONE,null);
+                isLoadMore = false;
+                isMore = true;
+                pageNo = 1;
+                load();
+            }
+        }else {//不可见
+            mFocusBorder.setVisible(false);
+        }
     }
 
     //重新加载
@@ -145,6 +163,15 @@ public class LookBackFragment extends BaseFragment implements LoadingLayout.Load
 //        startActivity(intent);
 
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN) //在ui线程执行
+    public void onDataSynEvent(Event.UpFocusEvent event) {
+
+        if(event.getType() == 1){
+            FocusUtil.setFocus(mRecyclerView);
+        }
+
+    }
     private void load(){
 
         baseService.selectAll(pageNo+"", new HttpCallback<BaseResponse<List<LookBackData>>>() {
@@ -161,6 +188,8 @@ public class LookBackFragment extends BaseFragment implements LoadingLayout.Load
                         }
                     });
                 }else {
+                    mAdapter.clearDatas();
+                    mAdapter.notifyDataSetChanged();
                     loadingLayout.setLoadingLayout(LoadingLayout.TWO,null);
                    // FocusUtil.setFocus(loadingLayout.getBtnLoad());
 
@@ -198,7 +227,7 @@ public class LookBackFragment extends BaseFragment implements LoadingLayout.Load
 //                        }
 
                         mAdapter.repaceDatas(lookBackDataList);
-                        FocusUtil.setFocus(mRecyclerView);
+                    //    FocusUtil.setFocus(mRecyclerView);
                     }
 
 
@@ -208,6 +237,9 @@ public class LookBackFragment extends BaseFragment implements LoadingLayout.Load
                         isMore = false;
 
                     }else {
+                        mAdapter.clearDatas();
+                        mAdapter.notifyDataSetChanged();
+
                         loadingLayout.setVisibility(View.VISIBLE);
 
                         loadingLayout.setLoadingLayout(LoadingLayout.TWO,new LoadingLayout.ShowMain(){

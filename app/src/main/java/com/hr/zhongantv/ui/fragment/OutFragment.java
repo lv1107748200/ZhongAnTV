@@ -37,12 +37,12 @@ public class OutFragment extends BaseFragment implements HintPopWindow.HintCallB
 
 
 
-                if(!CheckUtil.isEmpty(ClientInfo.getInstance().getURL())){
-                    boxOffLine();
-                }else {
-                    getActivity().finish();
-                }
-
+//                if(!CheckUtil.isEmpty(ClientInfo.getInstance().getURL())){
+//                    boxOffLine();
+//                }else {
+//
+//                }
+                getActivity().finish();
 
 //                if(null == hintPopWindow){
 //                    hintPopWindow = new HintPopWindow(getActivity(),new CustomPopuWindConfig
@@ -77,7 +77,7 @@ public class OutFragment extends BaseFragment implements HintPopWindow.HintCallB
     @Override
     public void loadData() {
         super.loadData();
-        FocusUtil.setFocus(outBtn);
+      //  FocusUtil.setFocus(outBtn);
     }
 
     @Override
