@@ -2,12 +2,14 @@ package com.hr.zhongantv.ui.fragment;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.hr.zhongantv.R;
 import com.hr.zhongantv.base.BaseFragment;
 import com.hr.zhongantv.net.base.BaseResponse;
 import com.hr.zhongantv.net.http.HttpCallback;
 import com.hr.zhongantv.net.http.HttpException;
+import com.hr.zhongantv.ui.activity.LookBackIjkActivity;
 import com.hr.zhongantv.utils.CheckUtil;
 import com.hr.zhongantv.utils.DisplayUtils;
 import com.hr.zhongantv.utils.FocusUtil;
@@ -24,7 +26,7 @@ import butterknife.OnClick;
 
 public class OutFragment extends BaseFragment implements HintPopWindow.HintCallBack {
 
-
+    private long firstTime=0;
     private HintPopWindow hintPopWindow;
 
     @BindView(R.id.out_btn)
@@ -42,7 +44,12 @@ public class OutFragment extends BaseFragment implements HintPopWindow.HintCallB
 //                }else {
 //
 //                }
-                getActivity().finish();
+                if (System.currentTimeMillis()-firstTime>2000){
+                    Toast.makeText(getContext(),"再按一次退出",Toast.LENGTH_SHORT).show();
+                    firstTime=System.currentTimeMillis();
+                }else{
+                    getActivity().finish();
+                }
 
 //                if(null == hintPopWindow){
 //                    hintPopWindow = new HintPopWindow(getActivity(),new CustomPopuWindConfig

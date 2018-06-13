@@ -135,6 +135,10 @@ public class LookBackFragment extends BaseFragment implements LoadingLayout.Load
                 loadingLayout.setLoadingLayout(LoadingLayout.ONE,null);
                 load();
             }else {
+
+                mAdapter.clearDatas();
+                mAdapter.notifyDataSetChanged();
+
                 loadingLayout.setVisibility(View.VISIBLE);
                 loadingLayout.setLoadingLayout(LoadingLayout.ONE,null);
                 isLoadMore = false;

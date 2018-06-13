@@ -1,6 +1,7 @@
 package com.hr.zhongantv.ui.activity;
 
 import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.hr.zhongantv.R;
 import com.hr.zhongantv.base.BaseActivity;
@@ -19,6 +20,8 @@ import static com.hr.mylibrary.utils.GSYVideoType.SCREEN_MATCH_FULL;
 public class LookBackIjkActivity extends BaseActivity {
     private boolean shortPress = false;
     private String url;
+    private long firstTime=0;
+
 
     private LookBackData lookBackData;
     @BindView(R.id.ControlPlayer)
@@ -103,6 +106,15 @@ public class LookBackIjkActivity extends BaseActivity {
             case KeyEvent.KEYCODE_BACK:    //返回键
                 Logger.d("back--->");
 
+            if(event.getAction()==KeyEvent.ACTION_DOWN){
+                if (System.currentTimeMillis()-firstTime>2000){
+                    Toast.makeText(LookBackIjkActivity.this,"再按一次退出播放器",Toast.LENGTH_SHORT).show();
+                    firstTime=System.currentTimeMillis();
+                }else{
+                    finish();
+                }
+                return true;
+            }
 
                 break;
             case KeyEvent.KEYCODE_MENU:
