@@ -46,7 +46,7 @@ public class BaseApplation extends Application {
                 .showThreadInfo(false)  // (Optional) Whether to show thread info or not. Default true
                 .methodCount(0)         // (Optional) How many method line to show. Default 2
                 .methodOffset(3)        // (Optional) Skips some method invokes in stack trace. Default 5
-                .tag("Player")   // (Optional) Custom tag for each log. Default PRETTY_LOGGER
+                .tag("player")   // (Optional) Custom tag for each log. Default PRETTY_LOGGER
                 .build();
         Logger.addLogAdapter(new AndroidLogAdapter(formatStrategy));
 

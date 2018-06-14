@@ -133,8 +133,11 @@ public class ControlIjkPlayer extends FrameLayout implements
 
     @Override
     public void onPrepared(IMediaPlayer iMediaPlayer) {
-        Logger.d("onPrepared--->");
-        loadingLayout.setVisibility(View.GONE);
+       // Logger.d("onPrepared--->");
+        //loadingLayout.setVisibility(View.GONE);
+        if(null != conPlayer){
+            conPlayer.onPrepared(iMediaPlayer);
+        }
         cusTomSurfaceView.getRenderView().requestLayout();
     }
 
@@ -145,44 +148,44 @@ public class ControlIjkPlayer extends FrameLayout implements
 
     @Override
     public void onSeekComplete(IMediaPlayer iMediaPlayer) {
-        Logger.d("onSeekComplete--->");
+       // Logger.d("onSeekComplete--->");
     }
 
     @Override
     public void onCompletion(IMediaPlayer iMediaPlayer) {
-        Logger.d("onCompletion--->");
-        stop();
+       // Logger.d("onCompletion--->");
         if(null != conPlayer){
             conPlayer.onCompletion();
         }
 
-
-        if(View.GONE == loadingLayout.getVisibility()){
-            loadingLayout.setVisibility(View.VISIBLE);
-        }
-        loadingLayout.setLoadingLayout(LoadingLayout.THREE,new LoadingLayout.ShowMain(){
-            @Override
-            public SpannableStringBuilder getSpannableStringBuilder() {
-                SpanUtils spanUtils = new SpanUtils();
-
-
-                return spanUtils.append("直播结束").create();
-            }
-        });
+//        stop();
+//        if(View.GONE == loadingLayout.getVisibility()){
+//            loadingLayout.setVisibility(View.VISIBLE);
+//        }
+//        loadingLayout.setLoadingLayout(LoadingLayout.THREE,new LoadingLayout.ShowMain(){
+//            @Override
+//            public SpannableStringBuilder getSpannableStringBuilder() {
+//                SpanUtils spanUtils = new SpanUtils();
+//                return spanUtils.append("直播结束").create();
+//            }
+//        });
     }
 
     @Override
     public boolean onError(IMediaPlayer iMediaPlayer, int i, int i1) {
-        Logger.d("onError--->");
-        if(View.GONE == loadingLayout.getVisibility()){
-            loadingLayout.setVisibility(View.VISIBLE);
+      //  Logger.d("onError--->");
+        if(null != conPlayer){
+            conPlayer.onError(iMediaPlayer,i,i1);
         }
-        loadingLayout.setLoadingLayout(LoadingLayout.TWO,new LoadingLayout.ShowMain(){
-            @Override
-            public String getText() {
-                return "直播加载失败";
-            }
-        });
+//        if(View.GONE == loadingLayout.getVisibility()){
+//            loadingLayout.setVisibility(View.VISIBLE);
+//        }
+//        loadingLayout.setLoadingLayout(LoadingLayout.TWO,new LoadingLayout.ShowMain(){
+//            @Override
+//            public String getText() {
+//                return "直播加载失败";
+//            }
+//        });
         return true;
     }
 
@@ -325,7 +328,9 @@ public class ControlIjkPlayer extends FrameLayout implements
     }
 
     public interface ConPlayer{
-         void onCompletion();
+        void onPrepared(IMediaPlayer iMediaPlayer);
+        void onCompletion();
+         void onError(IMediaPlayer iMediaPlayer, int i, int i1);
     }
 
 

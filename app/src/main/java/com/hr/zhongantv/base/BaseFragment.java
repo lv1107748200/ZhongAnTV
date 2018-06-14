@@ -136,16 +136,16 @@ public class BaseFragment extends AbstractBaseFragment {
         if(!isViewCreated)
             return;
         if (getUserVisibleHint()) {
-            isHint(true);
             if(!isLoad){
                 loadData();
                 isLoad = true;
             }
+            isHint(true);
         } else {
-            isHint(false);
             if (isLoad) {
                 stopLoad();
             }
+            isHint(false);
         }
     }
     protected void setScrollListener(RecyclerView recyclerView) {

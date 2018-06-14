@@ -25,6 +25,7 @@ import com.hr.zhongantv.widget.layout.ControlIjkPlayer;
 import com.hr.zhongantv.widget.layout.LoadingLayout;
 import com.hr.zhongantv.widget.single.ClientInfo;
 import com.hr.zhongantv.widget.single.IjkPlayerMger;
+import com.orhanobut.logger.Logger;
 import com.trello.rxlifecycle2.android.FragmentEvent;
 
 import java.util.concurrent.TimeUnit;
@@ -35,6 +36,7 @@ import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import tv.danmaku.ijk.media.player.IMediaPlayer;
 
 /**
  * Created by 吕 on 2018/3/14.
@@ -72,13 +74,13 @@ public class VideoFragment extends BaseFragment
 
         loadingLayout.setLoad_layout(R.drawable.gradient_bc);
         loadingLayout.setLoadingCallBack(this);
-        controlIjkPlayer.setLoadingLayout(loadingLayout);
+       // controlIjkPlayer.setLoadingLayout(loadingLayout);
         controlIjkPlayer.setConPlayer(this);
 
 
 
-//      url = "rtmp://live.zacm.org/AppName/StreamName?auth_key=1528289632-0-0-2af3a1b8a084a7d2152c978199abb87a";
-   //   controlIjkPlayer.setLiveUrl(url);
+     //url = "rtmp://live.zacm.org/AppName/StreamName?auth_key=1528289632-0--2af3a1b8a084a7d2152c978199abb87a";
+    // controlIjkPlayer.setLiveUrl(url);
     //  controlIjkPlayer.init();
 
     }
@@ -129,7 +131,7 @@ public class VideoFragment extends BaseFragment
     //重新加载
     @Override
     public void btnCallBack() {
-
+        Logger.d("btnCallBack--->");
         reSet();
 
         loadingLayout.setLoadingLayout(LoadingLayout.ONE,null);
@@ -142,12 +144,51 @@ public class VideoFragment extends BaseFragment
         }
 
     }
+
+    //视频准备完成
+    @Override
+    public void onPrepared(IMediaPlayer iMediaPlayer) {
+        Logger.d("onPrepared--->");
+        loadingLayout.setVisibility(View.GONE);
+    }
+
     //播放完成
     @Override
     public void onCompletion() {
+        Logger.d("onCompletion--->");
+        controlIjkPlayer.stop();
+        if(View.GONE == loadingLayout.getVisibility()){
+            loadingLayout.setVisibility(View.VISIBLE);
+        }
+        loadingLayout.setLoadingLayout(LoadingLayout.THREE,new LoadingLayout.ShowMain(){
+            @Override
+            public SpannableStringBuilder getSpannableStringBuilder() {
+                SpanUtils spanUtils = new SpanUtils();
+                return spanUtils.append("直播结束").create();
+            }
+        });
         reSet();
         url = null;
         boxOffLine();
+    }
+//播放错误
+    @Override
+    public void onError(IMediaPlayer iMediaPlayer, int i, int i1) {
+        Logger.d("onError--->"  + " i=  "+i+"  i1 = " +i1);
+
+        if(View.GONE == loadingLayout.getVisibility()){
+            loadingLayout.setVisibility(View.VISIBLE);
+        }
+        loadingLayout.setLoadingLayout(LoadingLayout.TWO,new LoadingLayout.ShowMain(){
+            @Override
+            public String getText() {
+                return "直播加载失败";
+            }
+        });
+
+        //目前对错误的处理
+
+        url = null;
     }
 
     private void load(){
