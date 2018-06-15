@@ -187,7 +187,7 @@ public class VideoFragment extends BaseFragment
         });
 
         //目前对错误的处理
-
+        controlIjkPlayer.stop();
         url = null;
     }
 
@@ -195,7 +195,7 @@ public class VideoFragment extends BaseFragment
 
         baseService.selectLiveByBoxNumber(new HttpCallback<BaseResponse<LiveData>>() {
             @Override
-            public void onError(HttpException e) {
+            public void onError(final HttpException e) {
 
                 if(View.GONE == loadingLayout.getVisibility()){
                     loadingLayout.setVisibility(View.VISIBLE);
@@ -220,9 +220,17 @@ public class VideoFragment extends BaseFragment
                             return spanUtils.append("当前没有直播").create();
                         }
                     });
-                }else{
-                    loadingLayout.setLoadingLayout(LoadingLayout.TWO,null);
-                   // FocusUtil.setFocus(loadingLayout.getBtnLoad());
+                }else {
+                    if(!CheckUtil.isEmpty(e.getMsg())){
+                        loadingLayout.setLoadingLayout(LoadingLayout.TWO, new LoadingLayout.ShowMain(){
+                            @Override
+                            public String getText() {
+                                return e.getMsg();
+                            }
+                        });
+                    }else {
+                        loadingLayout.setLoadingLayout(LoadingLayout.TWO, null);
+                    }
                 }
             }
 

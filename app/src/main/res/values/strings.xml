@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ZhongAnTV</string>
+    <string name="app_name">安全直播</string>
 
     <item name="tag_view_hold" type="id" />
 
